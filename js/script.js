@@ -9,7 +9,6 @@ const username = "ken-ellingsen";
 const getUserInfo = async function () {
     const res = await fetch(`https://api.github.com/users/${username}`);
     const userInfo = await res.json();
-    //console.log(userInfo);
     displayUserInfo(userInfo);
 };
 
@@ -58,17 +57,14 @@ repoList.addEventListener("click", function (e) {
 const getRepoInfo = async function (repoName) {
     const res = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await res.json();
-    //console.log(repoInfo);
 
     const fetchLanguages = await fetch(repoInfo.languages_url);
     const languageData = await fetchLanguages.json();
-    //console.log(languageData);
 
     let languages = [];
     for (const language in languageData) {
         languages.push(language);
     }
-    //console.log(languages);
 
     displayRepoInfo(repoInfo, languages);
 };
@@ -97,7 +93,6 @@ backButton.addEventListener("click", function () {
 // Dynamic search
 filterInput.addEventListener("input", function (e) {
     const search = e.target.value;
-    //console.log(input);
     const repos = document.querySelectorAll(".repo");
     const lowerSearch = search.toLowerCase();
 
